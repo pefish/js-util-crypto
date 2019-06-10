@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-util-crypto",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "crypto tool of js",
   "keywords": [
     "common",
@@ -11,6 +11,7 @@
   "bugs": "https://github.com/pefish/js-util-crypto/issues",
   "license": "MIT",
   "author": "pefish",
+  "main": "./lib/crypto.js",
   "types": "./types/crypto.d.ts",
   "engines": {
     "node": "*"
