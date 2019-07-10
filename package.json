@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-util-crypto",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "crypto tool of js",
   "keywords": [
     "common",
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@pefish/js-error": "^0.0.5",
-    "@pefish/js-node-assist": "^0.6.2"
+    "@pefish/js-node-assist": "^0.6.2",
+    "bcrypt": "^3.0.6"
   }
 }

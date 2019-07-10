@@ -1,5 +1,6 @@
 import '@pefish/js-node-assist'
 import crypto from 'crypto'
+import Bcrypt from 'bcrypt'
 
 /**
  * 加密工具类
@@ -202,5 +203,13 @@ export default class CryptUtil {
     cipherChunks.push(decipher.final('utf8'))
 
     return cipherChunks.join('')
+  }
+
+  static bcrypt (password: string, saltRounds: number = 4): string {
+    return Bcrypt.hashSync(password, saltRounds)
+  }
+
+  static bcryptCompare (password: string, hashedPassword: string): boolean {
+    return Bcrypt.compareSync(password, hashedPassword)
   }
 }

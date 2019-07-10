@@ -94,4 +94,28 @@ describe('CryptUtil', () => {
   //     assert.throws(() => {}, err)
   //   }
   // })
+
+  it('bcrypt', async () => {
+    try {
+      const hash = CryptUtil.bcrypt('111111')
+      // global.logger.error(hash)
+      const result = CryptUtil.bcryptCompare('111111', hash)
+      // global.logger.error(result)
+      assert.strictEqual(result, true)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
+
+  it('bcryptCompare', async () => {
+    try {
+      const result = CryptUtil.bcryptCompare('111111', '$2a$04$vqjZQCe9Bj4rGE0YRxudcu/IFou0HPgSmJd4v0hwCHcwshZM1V1JW')
+      // global.logger.error(result)
+      assert.strictEqual(result, true)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
 })
