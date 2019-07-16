@@ -1,6 +1,8 @@
 import '@pefish/js-node-assist'
 import crypto from 'crypto'
 import Bcrypt from 'bcrypt'
+import ErrorHelper from '@pefish/js-error'
+import CryptoJs from 'crypto-js'
 
 /**
  * 加密工具类
@@ -167,7 +169,7 @@ export default class CryptUtil {
    * @param secretKey {string} 密钥
    * @returns {string}
    */
-  static aesEncrypt (data, secretKey) {
+  static aesEncrypt (data, secretKey): string {
     const cipher = crypto.createCipher('aes-128-ecb', secretKey)
     return cipher.update(data, 'utf8', 'hex') + cipher.final('hex')
   }
@@ -178,14 +180,25 @@ export default class CryptUtil {
    * @param secretKey {string} 密钥
    * @returns {string}
    */
-  static aesDecrypt (data, secretKey) {
+  static aesDecrypt (data, secretKey): string {
     const cipher = crypto.createDecipher('aes-128-ecb', secretKey)
     return cipher.update(data, 'hex', 'utf8') + cipher.final('utf8')
   }
 
-  static aesEncryptWithCbc (data, secretKey) {
+  static aesEncryptWithEcb (data: string, secretKey: string): string {
+    const length = secretKey.length
+    if (length <= 16) {
+      secretKey = secretKey.padStart(16, `0`)
+    } else if (length <= 24) {
+      secretKey = secretKey.padStart(24, `0`)
+    } else if (length <= 32) {
+      secretKey = secretKey.padStart(32, `0`)
+    } else {
+      throw new ErrorHelper(`length of secret key error`)
+    }
+
     const cipherChunks = []
-    const cipher = crypto.createCipheriv('aes-128-ecb', secretKey, ``)
+    const cipher = crypto.createCipheriv(`aes-${secretKey.length * 8}-ecb`, secretKey, ``)
     cipher.setAutoPadding(true)
 
     cipherChunks.push(cipher.update(data, 'utf8', 'base64'))
@@ -194,9 +207,30 @@ export default class CryptUtil {
     return cipherChunks.join('')
   }
 
-  static aesDecryptWithCbc (data, secretKey) {
+  // 每次加密的结果不一样
+  static rc4Encrypt (data: string, secretKey: string): string {
+    return CryptoJs.RC4.encrypt(data, secretKey).toString()
+  }
+
+  static rc4Decrypt (data: string, secretKey: string): string {
+    const decipher = crypto.createDecipheriv(`rc4`, secretKey, '');
+    return decipher.update(data, "base64", "utf8") + decipher.final("utf8")
+  }
+
+  static aesDecryptWithEcb (data: string, secretKey: string): string {
+    const length = secretKey.length
+    if (length <= 16) {
+      secretKey = secretKey.padStart(16, `0`)
+    } else if (length <= 24) {
+      secretKey = secretKey.padStart(24, `0`)
+    } else if (length <= 32) {
+      secretKey = secretKey.padStart(32, `0`)
+    } else {
+      throw new ErrorHelper(`length of secret key error`)
+    }
+
     const cipherChunks = []
-    const decipher = crypto.createDecipheriv('aes-128-ecb', secretKey, ``)
+    const decipher = crypto.createDecipheriv(`aes-${secretKey.length * 8}-ecb`, secretKey, ``)
     decipher.setAutoPadding(true)
 
     cipherChunks.push(decipher.update(data, 'base64', 'utf8'))

@@ -70,30 +70,52 @@ describe('CryptUtil', () => {
     }
   })
 
-  // it('aesDecrypt_temp', async () => {
-  //   try {
-  //     const a = CryptUtil.aesDecrypt(
-  //       '85690dfb61b357d9df5819568acbc45d6666f54d7c6abcf4ceb8d2ab8a2f6127',
-  //       'test'
-  //     )
-  //     logger.error('aesDecrypt_temp', a)
-  //     // assert.strictEqual(a, fixtures['aesDecrypt']['result']['decypted'])
-  //   } catch (err) {
-  //     logger.error(err)
-  //     assert.throws(() => {}, err)
-  //   }
-  // })
+  it('aesDecryptWithEcb', async () => {
+    try {
+      const a = CryptUtil.aesDecryptWithEcb(
+        'bj7P4lrG3TyB8KBpCDyGqQ==',
+        '1234567890123456'
+      )
+      // global.logger.error(a)
+      assert.strictEqual(a, `haha`)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
 
-  // it('aesEncrypt_temp', async () => {
-  //   try {
-  //     const a = CryptUtil.aesEncrypt('SCRDFF6M7E2V7P3KKDUZ67MSPUBJBW4JRFD5GJ7JXCZSPWTFIFFHDVFK', 'test')
-  //     logger.error('aesEncrypt_temp', a)
-  //     // assert.strictEqual(a, fixtures['aesEncrypt']['result']['encypted'])
-  //   } catch (err) {
-  //     logger.error(err)
-  //     assert.throws(() => {}, err)
-  //   }
-  // })
+  it('aesEncryptWithEcb', async () => {
+    try {
+      const a = CryptUtil.aesEncryptWithEcb('haha', '1234567890123456')
+      // global.logger.error(a)
+      assert.strictEqual(a, `bj7P4lrG3TyB8KBpCDyGqQ==`)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
+
+  it('rc4Encrypt', async () => {
+    try {
+      const a = CryptUtil.rc4Encrypt('haha', '123456')
+      global.logger.error(a)
+      // assert.strictEqual(a, `U2FsdGVkX18zEme0tkc0SJvpu+o=`)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
+
+  it('rc4Decrypt', async () => {
+    try {
+      const a = CryptUtil.rc4Decrypt('aJkWBg==', '123456')
+      global.logger.error(a)
+      // assert.strictEqual(a, `haha`)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
 
   it('bcrypt', async () => {
     try {
