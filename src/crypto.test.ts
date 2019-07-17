@@ -95,22 +95,13 @@ describe('CryptUtil', () => {
     }
   })
 
-  it('rc4Encrypt', async () => {
+  it('rc4Encrypt rc4Decrypt', async () => {
     try {
       const a = CryptUtil.rc4Encrypt('haha', '123456')
-      global.logger.error(a)
+      // global.logger.error(a)
       // assert.strictEqual(a, `U2FsdGVkX18zEme0tkc0SJvpu+o=`)
-    } catch (err) {
-      global.logger.error(err)
-      assert.throws(() => {}, err)
-    }
-  })
-
-  it('rc4Decrypt', async () => {
-    try {
-      const a = CryptUtil.rc4Decrypt('aJkWBg==', '123456')
-      global.logger.error(a)
-      // assert.strictEqual(a, `haha`)
+      const b = CryptUtil.rc4Decrypt(a, '123456')
+      assert.strictEqual(b, `haha`)
     } catch (err) {
       global.logger.error(err)
       assert.throws(() => {}, err)

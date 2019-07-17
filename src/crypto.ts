@@ -213,8 +213,7 @@ export default class CryptUtil {
   }
 
   static rc4Decrypt (data: string, secretKey: string): string {
-    const decipher = crypto.createDecipheriv(`rc4`, secretKey, '');
-    return decipher.update(data, "base64", "utf8") + decipher.final("utf8")
+    return CryptoJs.enc.Utf8.stringify(CryptoJs.RC4.decrypt(data, secretKey))
   }
 
   static aesDecryptWithEcb (data: string, secretKey: string): string {
