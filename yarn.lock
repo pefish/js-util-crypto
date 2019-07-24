@@ -18,26 +18,17 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@pefish/js-error@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@pefish/js-error/-/js-error-0.0.5.tgz#be50104cb7e6cb115a31ccdc55dafcf09a65a4ec"
-  integrity sha512-Eypll4OykI0EWj61wx8/cVMVldGjiPJVic/KzK76z1RZiNN9Q2TF7DJif+qg7MBlGbJHAQZ77wIBv5x9fndxpw==
+"@pefish/js-error@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@pefish/js-error/-/js-error-0.1.1.tgz#d3e6f4a1362206aaf73afd628465364c3a581ed2"
+  integrity sha512-JNLY0twr0fVEnGgrMetZsBZrStDGmHDX0dY9amDChTzVqrGEd6dvpzkR9BxINGhWgeAX6naTzI2FZn3ZwGlrsw==
 
-"@pefish/js-helper-assert@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@pefish/js-helper-assert/-/js-helper-assert-0.0.2.tgz#5adfb94e9308f1b825cf16e1982cf687b8775037"
-  integrity sha512-y37Tr+gLYOzSwiqMEGJT/TlnHBM+CeHhGNjpSKnXhu8dgPdNDY4c3G6/8rvu+M5NBhvoeM+fSHvmU/bqZ6H8Lg==
+"@pefish/js-node-assist@^0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@pefish/js-node-assist/-/js-node-assist-0.6.6.tgz#62673762c0dcc8ce3faf20c8bb777008fb69a084"
+  integrity sha512-IvdZCVDZXi2oc25XlKEHC7bCMaTNyDmYN+wPpcRQOEpa1A4JEsscIVWbw33zNMeKWuOfVWdFdJopgxwchRHx3A==
   dependencies:
-    bignumber.js "^8.1.1"
-    p-js-error "^0.0.4"
-
-"@pefish/js-node-assist@^0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@pefish/js-node-assist/-/js-node-assist-0.6.5.tgz#ca1ebb0e48c319fe9e4be27838ff300415501a86"
-  integrity sha512-2oL6OvRE6/PrdHAS9efm9XnPWl1Pw4JalpR8NZHXqTtapZk4Hb73dqmh4DPZk199nPDX9EZvzqIvbRtC49ZUng==
-  dependencies:
-    "@pefish/js-error" "^0.0.5"
-    "@pefish/js-helper-assert" "^0.0.2"
+    "@pefish/js-error" "^0.1.1"
     bignumber.js "^8.1.1"
 
 "@types/chai@^4.1.7":
@@ -500,11 +491,6 @@ osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
-
-p-js-error@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/p-js-error/-/p-js-error-0.0.4.tgz#ae7dbba4f998576012bb818227961b7961cc9902"
-  integrity sha512-voF6p/u1QP+7UMMqZLucmnXHN5JncAvyeKjlvGVRQ9HuFhIL/RBxZ0gN0g1UXaRNdsOorWNfnNHuTGKNMN7toA==
 
 path-is-absolute@^1.0.0:
   version "1.0.1"

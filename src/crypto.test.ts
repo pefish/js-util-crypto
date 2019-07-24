@@ -97,16 +97,27 @@ describe('CryptUtil', () => {
 
   it('rc4Encrypt rc4Decrypt', async () => {
     try {
-      const a = CryptUtil.rc4Encrypt('haha', '123456')
+      const a = CryptUtil.rc4Encrypt('gdrthbdfgherthbe56whtynsthwhw54452hwFb', '123456')
       // global.logger.error(a)
       // assert.strictEqual(a, `U2FsdGVkX18zEme0tkc0SJvpu+o=`)
       const b = CryptUtil.rc4Decrypt(a, '123456')
-      assert.strictEqual(b, `haha`)
+      assert.strictEqual(b, `gdrthbdfgherthbe56whtynsthwhw54452hwFb`)
     } catch (err) {
       global.logger.error(err)
       assert.throws(() => {}, err)
     }
   })
+
+  // it('rc4Decrypt', async () => {
+  //   try {
+  //     const b = CryptUtil.rc4Decrypt(`U2FsdGVkX19YZxAfNxDBkc1Vrv4=`, 'test')
+  //     console.log(b);
+  //     // assert.strictEqual(b, `haha`)
+  //   } catch (err) {
+  //     global.logger.error(err)
+  //     assert.throws(() => {}, err)
+  //   }
+  // })
 
   it('bcrypt', async () => {
     try {
