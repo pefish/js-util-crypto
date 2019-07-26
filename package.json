@@ -23,6 +23,7 @@
   "scripts": {
     "build": "rm -rf types lib && tsc",
     "test": "mocha --timeout 6000 --require ts-node/register src/crypto.test.ts",
+    "t": "mocha --timeout 6000 --require ts-node/register",
     "prepublish": "yarn build"
   },
   "devDependencies": {

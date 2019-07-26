@@ -108,16 +108,28 @@ describe('CryptUtil', () => {
     }
   })
 
-  // it('rc4Decrypt', async () => {
-  //   try {
-  //     const b = CryptUtil.rc4Decrypt(`U2FsdGVkX19YZxAfNxDBkc1Vrv4=`, 'test')
-  //     console.log(b);
-  //     // assert.strictEqual(b, `haha`)
-  //   } catch (err) {
-  //     global.logger.error(err)
-  //     assert.throws(() => {}, err)
-  //   }
-  // })
+  it('aes256Encrypt aes256Decrypt', async () => {
+    try {
+      const result = CryptUtil.aes256Encrypt(`haha`, 'test')
+      global.logger.error(result)
+      const b = CryptUtil.aes256Decrypt(result, 'test')
+      assert.strictEqual(b, `haha`)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
+
+  it('aes256Decrypt', async () => {
+    try {
+      // echo "haha" | openssl enc -aes-256-cbc -e -a -k test
+      const b = CryptUtil.aes256Decrypt(`U2FsdGVkX1/IRf2An/fuqDrWS/zdIE0g4EVrHgk+bwU=`, 'test')
+      assert.strictEqual(b, `haha\n`)
+    } catch (err) {
+      global.logger.error(err)
+      assert.throws(() => {}, err)
+    }
+  })
 
   it('bcrypt', async () => {
     try {

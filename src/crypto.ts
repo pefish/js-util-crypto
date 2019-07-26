@@ -3,6 +3,7 @@ import crypto from 'crypto'
 import Bcrypt from 'bcrypt'
 import ErrorHelper from '@pefish/js-error'
 import CryptoJs from 'crypto-js'
+import fs from 'fs'
 
 /**
  * 加密工具类
@@ -205,6 +206,16 @@ export default class CryptUtil {
     cipherChunks.push(cipher.final('base64'))
 
     return cipherChunks.join('')
+  }
+
+  // echo "U2FsdGVkX182JKRVOqZupdjBvUm5Z72gjF2h1FMA5q0=" | openssl enc -d -aes-256-cbc -k test -a
+  static aes256Encrypt (data: string, secretKey: string): string {
+    return CryptoJs.AES.encrypt(data, secretKey).toString();
+  }
+
+  // echo "haha" | openssl enc -aes-256-cbc -e -a -k test  会多加密一个回车符
+  static aes256Decrypt (data: string, secretKey: string): string {
+    return CryptoJs.enc.Utf8.stringify(CryptoJs.AES.decrypt(data, secretKey));
   }
 
   // 每次加密的结果不一样
