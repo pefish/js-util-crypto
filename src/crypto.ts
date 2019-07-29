@@ -215,7 +215,11 @@ export default class CryptUtil {
 
   // echo "haha" | openssl enc -aes-256-cbc -e -a -k test  会多加密一个回车符
   static aes256Decrypt (data: string, secretKey: string): string {
-    return CryptoJs.enc.Utf8.stringify(CryptoJs.AES.decrypt(data, secretKey));
+    const result = CryptoJs.enc.Utf8.stringify(CryptoJs.AES.decrypt(data, secretKey));
+    if (!result) {
+      throw new ErrorHelper(`secret error`)
+    }
+    return result
   }
 
   // 每次加密的结果不一样
