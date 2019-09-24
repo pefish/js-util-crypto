@@ -1,9 +1,14 @@
-import '@pefish/js-node-assist'
 import crypto from 'crypto'
 import Bcrypt from 'bcrypt'
-import ErrorHelper from '@pefish/js-error'
 import CryptoJs from 'crypto-js'
-import fs from 'fs'
+
+declare global {
+  namespace NodeJS {
+    interface Global {
+      logger: any,
+    }
+  }
+}
 
 /**
  * 加密工具类
@@ -195,7 +200,7 @@ export default class CryptUtil {
     } else if (length <= 32) {
       secretKey = secretKey.padStart(32, `0`)
     } else {
-      throw new ErrorHelper(`length of secret key error`)
+      throw new Error(`length of secret key error`)
     }
 
     const cipherChunks = []
@@ -217,7 +222,7 @@ export default class CryptUtil {
   static aes256Decrypt (data: string, secretKey: string): string {
     const result = CryptoJs.enc.Utf8.stringify(CryptoJs.AES.decrypt(data, secretKey));
     if (!result) {
-      throw new ErrorHelper(`secret error`)
+      throw new Error(`secret error`)
     }
     return result
   }
@@ -240,7 +245,7 @@ export default class CryptUtil {
     } else if (length <= 32) {
       secretKey = secretKey.padStart(32, `0`)
     } else {
-      throw new ErrorHelper(`length of secret key error`)
+      throw new Error(`length of secret key error`)
     }
 
     const cipherChunks = []

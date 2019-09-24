@@ -124,7 +124,7 @@ describe('CryptUtil', () => {
     try {
       // echo "haha" | openssl enc -aes-256-cbc -e -a -k test
       const b = CryptUtil.aes256Decrypt("U2FsdGVkX1/m+/YNKohJ4FOEO7pLTd6HsC8AIMvoUS8=\n", 'test')
-      assert.strictEqual(b.removeLastByStr_("\n"), `haha`)
+      assert.strictEqual(b, `haha\n`)
     } catch (err) {
       global.logger.error(err)
       assert.throws(() => {}, err)
