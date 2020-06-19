@@ -213,6 +213,28 @@ export default class CryptUtil {
     return cipherChunks.join('')
   }
 
+  static aesEncryptWithCbc (data: string, secretKey: string): string {
+    const length = secretKey.length
+    if (length <= 16) {
+      secretKey = secretKey.padStart(16, `0`)
+    } else if (length <= 24) {
+      secretKey = secretKey.padStart(24, `0`)
+    } else if (length <= 32) {
+      secretKey = secretKey.padStart(32, `0`)
+    } else {
+      throw new Error(`length of secret key error`)
+    }
+
+    const cipherChunks = []
+    const cipher = crypto.createCipheriv(`aes-${secretKey.length * 8}-cbc`, secretKey, Buffer.alloc(16))
+    cipher.setAutoPadding(true)
+
+    cipherChunks.push(cipher.update(data, 'utf8', 'base64'))
+    cipherChunks.push(cipher.final('base64'))
+
+    return cipherChunks.join('')
+  }
+
   // echo "U2FsdGVkX182JKRVOqZupdjBvUm5Z72gjF2h1FMA5q0=" | openssl enc -d -aes-256-cbc -k test -a
   static aes256Encrypt (data: string, secretKey: string): string {
     return CryptoJs.AES.encrypt(data, secretKey).toString();
@@ -250,6 +272,28 @@ export default class CryptUtil {
 
     const cipherChunks = []
     const decipher = crypto.createDecipheriv(`aes-${secretKey.length * 8}-ecb`, secretKey, ``)
+    decipher.setAutoPadding(true)
+
+    cipherChunks.push(decipher.update(data, 'base64', 'utf8'))
+    cipherChunks.push(decipher.final('utf8'))
+
+    return cipherChunks.join('')
+  }
+
+  static aesDecryptWithCbc (data: string, secretKey: string): string {
+    const length = secretKey.length
+    if (length <= 16) {
+      secretKey = secretKey.padStart(16, `0`)
+    } else if (length <= 24) {
+      secretKey = secretKey.padStart(24, `0`)
+    } else if (length <= 32) {
+      secretKey = secretKey.padStart(32, `0`)
+    } else {
+      throw new Error(`length of secret key error`)
+    }
+
+    const cipherChunks = []
+    const decipher = crypto.createDecipheriv(`aes-${secretKey.length * 8}-cbc`, secretKey, Buffer.alloc(16))
     decipher.setAutoPadding(true)
 
     cipherChunks.push(decipher.update(data, 'base64', 'utf8'))
