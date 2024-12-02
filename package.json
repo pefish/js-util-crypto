@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-util-crypto",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "crypto tool of js",
   "keywords": [
     "common",
@@ -24,19 +24,21 @@
     "build": "rm -rf types lib && tsc",
     "test": "mocha --timeout 6000 --require ts-node/register src/crypto.test.ts",
     "t": "mocha --timeout 6000 --require ts-node/register",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^11.13.7",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "@types/bcrypt": "^5.0.2",
+    "@types/chai": "^5.0.1",
+    "@types/crypto-js": "^4.2.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.1",
+    "mocha": "^10.8.2",
+    "ts-node": "^10.9.2",
+    "tslint": "^6.1.3",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "crypto-js": "^4.2.0",
-    "mocha": "^10.3.0"
+    "crypto-js": "^4.2.0"
   }
 }
